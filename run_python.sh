@@ -14,6 +14,8 @@
 #SBATCH --mail-user=nem177@pitt.edu       # Pitt email for notifications
 #SBATCH --mail-type=END,FAIL              # Send an email when finished or if it is an issue
 
+# Script was adapted from Student Nayeli Silva's code
+
 # Paths
 SHARED_FOLDER="/ihome/nllerena/nem177/cs2770/"
 INPUT_FILE="${SHARED_FOLDER}/Pitt_CRC_example.py"
