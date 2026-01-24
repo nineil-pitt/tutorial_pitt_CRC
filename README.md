@@ -1,1 +1,2 @@
-# tutorial_pitt_CRC
+# Tutorial Pitt CRC
+Please, review Pitt_CRC_tutorial.pdf document.
