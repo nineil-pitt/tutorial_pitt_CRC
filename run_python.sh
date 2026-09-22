@@ -17,7 +17,8 @@
 # Script was adapted from Student Nayeli Silva's code
 
 # Paths
-SHARED_FOLDER="/ihome/nllerena/nem177/cs2770/"
+#SHARED_FOLDER="/ihome/nllerena/nem177/cs2770/"
+SHARED_FOLDER="/ihome/nllerena/nem177/cs1674/tutorial_pitt_CRC/"
 INPUT_FILE="${SHARED_FOLDER}/Pitt_CRC_example.py"
 
 # Clean previous modules
