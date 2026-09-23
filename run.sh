@@ -18,7 +18,7 @@
 
 # Paths
 #SHARED_FOLDER="/ihome/nllerena/nem177/cs2770/"
-SHARED_FOLDER="/ihome/nllerena/nem177/cs1674/tutorial_pitt_CRC/"
+SHARED_FOLDER="/ihome/nllerena/nem177/tutorial_pitt_CRC/"
 INPUT_NOTEBOOK="${SHARED_FOLDER}/Pitt_CRC_example.ipynb"
 OUTPUT_NOTEBOOK="${SHARED_FOLDER}/out_Pitt_CRC_example.ipynb"
 
