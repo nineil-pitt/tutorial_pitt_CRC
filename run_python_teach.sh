@@ -1,14 +1,13 @@
 #!/bin/bash
 #SBATCH --job-name=test_2770               # Job name
-#SBATCH --output=notebook_gpu-%j.out      # Output file
-#SBATCH --error=notebook_gpu-%j.err       # Error file
+#SBATCH --output=code_gpu-%j.out      # Output file
+#SBATCH --error=code_gpu-%j.err       # Error file
 #SBATCH --nodes=1   
 #SBATCH --ntasks-per-node=1               # One task per node
 #SBATCH --cpus-per-task=1
-#SBATCH --cluster=gpu                     # gpu | teach
+#SBATCH --cluster=teach                     # gpu | teach
 #SBATCH --gres=gpu:1                      # Asking for 1 GPU
-#SBATCH --partition=l40s                  # Partition l40s | gpu
-#SBATCH --constraint=l40s,48g,intel       # GPU l40s con 48GB
+#SBATCH --partition=gpu                  # Partition l40s | gpu
 #SBATCH --mem=128GB                       # Requested Memory RAM
 #SBATCH --time=16:00:00                   # Max Requested Time hh:mm:ss
 #SBATCH --mail-user=nem177@pitt.edu       # Pitt email for notifications
@@ -19,8 +18,7 @@
 # Paths
 #SHARED_FOLDER="/ihome/nllerena/nem177/cs2770/"
 SHARED_FOLDER="/ihome/nllerena/nem177/tutorial_pitt_CRC/"
-INPUT_NOTEBOOK="${SHARED_FOLDER}/Pitt_CRC_example.ipynb"
-OUTPUT_NOTEBOOK="${SHARED_FOLDER}/out_Pitt_CRC_example.ipynb"
+INPUT_FILE="${SHARED_FOLDER}/Pitt_CRC_example.py"
 
 # Clean previous modules
 module purge
@@ -33,12 +31,8 @@ module load python/3.11
 export PATH=$HOME/.local/bin:$PATH
 unset LD_LIBRARY_PATH
 
-# Verify that papermill is installed, if not, install it
-if ! command -v papermill &> /dev/null; then
-    echo "Can not find Papermill. Installing..."
-    pip install --user papermill
-    echo "Papermill installed succesfully!"
-fi
+# Install Packages
+pip3 install Pillow
 
 # Output some information
 echo "Executing in node: $(hostname)"
@@ -48,26 +42,22 @@ echo "GPU information:"
 nvidia-smi
 
 # Double check existence of notebook
-if [ ! -f "$INPUT_NOTEBOOK" ]; then
-    echo "Error: Can not find input file: $INPUT_NOTEBOOK"
+if [ ! -f "$INPUT_FILE" ]; then
+    echo "Error: Can not find input file: $INPUT_FILE"
     exit 1
 fi
 
-# Ejecutar notebook con Papermill
-echo "Initializing notebook..."
-echo "Input: $INPUT_NOTEBOOK"
-echo "Output: $OUTPUT_NOTEBOOK"
+# Ejecutar python code
+echo "Initializing code..."
+echo "Input: $INPUT_FILE"
 
-papermill "$INPUT_NOTEBOOK" "$OUTPUT_NOTEBOOK" \
-    --log-output \
-    --report-mode
+python3 "$INPUT_FILE"
 
 # Ensuring that execution is correct
 if [ $? -eq 0 ]; then
-    echo "Notebook executed correctly!"
-    echo "Output File: $OUTPUT_NOTEBOOK"
+    echo "Code executed correctly!"
 else
-    echo "Error while executing notebook."
+    echo "Error while executing code."
     exit 1
 fi
 

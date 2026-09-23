@@ -5,10 +5,10 @@
 #SBATCH --nodes=1   
 #SBATCH --ntasks-per-node=1               # One task per node
 #SBATCH --cpus-per-task=1
-#SBATCH --cluster=gpu 
+#SBATCH --cluster=gpu                     # gpu | teach
 #SBATCH --gres=gpu:1                      # Asking for 1 GPU
-#SBATCH --partition=l40s                  # Partition L40S
-#SBATCH --constraint=l40s,48g,intel       # GPU L40S con 48GB
+#SBATCH --partition=l40s                  # Partition l40s | gpu
+#SBATCH --constraint=l40s,48g,intel       # GPU l40s con 48GB
 #SBATCH --mem=128GB                       # Requested Memory RAM
 #SBATCH --time=16:00:00                   # Max Requested Time hh:mm:ss
 #SBATCH --mail-user=nem177@pitt.edu       # Pitt email for notifications
